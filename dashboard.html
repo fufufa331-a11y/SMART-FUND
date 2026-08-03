@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard - SMART FUND</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { darkMode: 'class' };</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" />
+  <link rel="stylesheet" href="/assets/css/style.css" />
+</head>
+<body class="font-jakarta antialiased bg-slate-50">
+  <div id="pageLoader" class="page-loader"><div class="loader-logo mx-auto"></div></div>
+
+  <!-- Sidebar Overlay -->
+  <div id="sidebarOverlay" class="sidebar-overlay"></div>
+
+  <div class="flex min-h-screen">
+    <!-- Sidebar -->
+    <aside id="sidebar" class="sidebar w-72 bg-white border-r border-slate-200 flex flex-col fixed md:sticky top-0 h-screen z-50">
+      <div class="p-6 border-b border-slate-100">
+        <a href="/" class="flex items-center gap-2">
+          <div class="w-10 h-10 rounded-xl gradient-bg flex items-center justify-center text-white font-bold text-xl">
+            <i class="fas fa-wallet"></i>
+          </div>
+          <span class="text-lg font-extrabold gradient-text">SMART FUND</span>
+        </a>
+      </div>
+      <nav class="flex-1 p-4 space-y-1 overflow-y-auto">
+        <a class="sidebar-link active" data-page="dashboard"><i class="fas fa-gauge-high w-5"></i> Dashboard</a>
+        <a class="sidebar-link" data-page="apply"><i class="fas fa-file-circle-plus w-5"></i> Ajukan Pinjaman</a>
+        <a class="sidebar-link" data-page="history"><i class="fas fa-clock-rotate-left w-5"></i> Riwayat Pengajuan</a>
+        <a class="sidebar-link" data-page="balance"><i class="fas fa-wallet w-5"></i> Saldo Pinjaman</a>
+        <a class="sidebar-link" data-page="limit"><i class="fas fa-gauge w-5"></i> Limit Pinjaman</a>
+      </nav>
+      <div class="p-4 border-t border-slate-100">
+        <a id="logoutBtn" class="sidebar-link text-red-500 hover:bg-red-50"><i class="fas fa-right-from-bracket w-5"></i> Logout</a>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="flex-1 flex flex-col min-w-0">
+      <!-- Topbar -->
+      <header class="bg-white border-b border-slate-200 sticky top-0 z-40">
+        <div class="flex items-center justify-between px-4 md:px-6 h-16">
+          <div class="flex items-center gap-3">
+            <button id="menuToggle" class="md:hidden w-10 h-10 rounded-lg bg-slate-100 flex items-center justify-center">
+              <i class="fas fa-bars text-slate-600"></i>
+            </button>
+            <h1 id="pageTitle" class="text-lg font-bold text-slate-900">Dashboard</h1>
+          </div>
+          <div class="flex items-center gap-3">
+            <button id="darkToggle" class="w-10 h-10 rounded-lg bg-slate-100 flex items-center justify-center">
+              <i class="fas fa-moon text-slate-600"></i>
+            </button>
+            <button id="notifBtn" class="relative w-10 h-10 rounded-lg bg-slate-100 flex items-center justify-center">
+              <i class="fas fa-bell text-slate-600"></i>
+              <span id="notifBadge" class="hidden absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white text-xs rounded-full flex items-center justify-center">0</span>
+            </button>
+            <div class="flex items-center gap-2">
+              <div class="w-10 h-10 rounded-full gradient-bg flex items-center justify-center text-white font-bold" id="userAvatar">U</div>
+              <div class="hidden sm:block">
+                <p id="userName" class="text-sm font-bold text-slate-900">User</p>
+                <p id="userEmail" class="text-xs text-slate-500">user@email.com</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Content Area -->
+      <main class="flex-1 p-4 md:p-6 overflow-y-auto">
+        <!-- ============================================ DASHBOARD PAGE ============================================ -->
+        <section id="page-dashboard" class="page-content">
+          <div class="mb-6">
+            <h2 class="text-2xl font-extrabold text-slate-900">Selamat Datang, <span id="welcomeName" class="gradient-text">User</span> 👋</h2>
+            <p class="text-slate-500 mt-1">Ringkasan akun dan aktivitas pinjaman Anda</p>
+          </div>
+
+          <!-- Status Akun -->
+          <div class="bg-white rounded-2xl p-5 border border-slate-100 shadow-sm mb-6 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center">
+                <i class="fas fa-shield-halved text-blue-600 text-xl"></i>
+              </div>
+              <div>
+                <p class="text-sm text-slate-500">Status Akun</p>
+                <p id="accountStatus" class="font-bold text-slate-900">Aktif</p>
+              </div>
+            </div>
+            <span id="accountStatusBadge" class="badge badge-active">Aktif</span>
+          </div>
+
+          <!-- Stats Cards -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+            <div class="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm">
+              <div class="flex items-center justify-between mb-4">
+                <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center"><i class="fas fa-wallet text-green-600 text-xl"></i></div>
+                <i class="fas fa-arrow-trend-up text-green-500"></i>
+              </div>
+              <p class="text-sm text-slate-500">Saldo Pinjaman</p>
+              <p id="statBalance" class="text-2xl font-extrabold text-slate-900 mt-1">Rp 0</p>
+            </div>
+            <div class="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm">
+              <div class="flex items-center justify-between mb-4">
+                <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center"><i class="fas fa-gauge text-blue-600 text-xl"></i></div>
+                <i class="fas fa-arrow-trend-up text-blue-500"></i>
+              </div>
+              <p class="text-sm text-slate-500">Limit Pinjaman</p>
+              <p id="statLimit" class="text-2xl font-extrabold text-slate-900 mt-1">Rp 0</p>
+            </div>
+            <div class="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm">
+              <div class="flex items-center justify-between mb-4">
+                <div class="w-12 h-12 bg-amber-100 rounded-xl flex items-center justify-center"><i class="fas fa-file-invoice-dollar text-amber-600 text-xl"></i></div>
+                <i class="fas fa-arrow-trend-down text-amber-500"></i>
+              </div>
+              <p class="text-sm text-slate-500">Withdrawal</p>
+              <p id="statTagihan" class="text-2xl font-extrabold text-slate-900 mt-1">Rp 0</p>
+              <button id="openWithdrawBtn" class="mt-4 w-full px-4 py-2 rounded-xl bg-amber-500 text-white font-semibold hover:bg-amber-600 transition">Tarik Saldo</button>
+            </div>
+          </div>
+
+          <!-- Status Pengajuan & Riwayat -->
+          <div class="grid lg:grid-cols-2 gap-6">
+            <div class="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm">
+              <h3 class="font-bold text-slate-900 mb-4"><i class="fas fa-info-circle text-blue-600 mr-2"></i> Status Pengajuan Terakhir</h3>
+              <div id="lastApplication" class="text-center py-8 text-slate-400">
+                <i class="fas fa-inbox text-4xl mb-3"></i>
+                <p>Belum ada pengajuan</p>
+              </div>
+            </div>
+            <div class="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm">
+              <h3 class="font-bold text-slate-900 mb-4"><i class="fas fa-receipt text-blue-600 mr-2"></i> Riwayat Transaksi</h3>
+              <div id="recentTransactions" class="space-y-3">
+                <div class="text-center py-8 text-slate-400"><i class="fas fa-inbox text-4xl mb-3"></i><p>Belum ada transaksi</p></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============================================ APPLY PAGE ============================================ -->
+        <section id="page-apply" class="page-content hidden">
+          <h2 class="text-2xl font-extrabold text-slate-900 mb-6">Ajukan Pinjaman</h2>
+          <div class="max-w-2xl bg-white rounded-2xl p-6 md:p-8 border border-slate-100 shadow-sm">
+            <!-- Step 1 -->
+            <div id="applyStep1" class="space-y-5">
+              <h3 class="font-bold text-slate-900 text-lg"><i class="fas fa-user text-blue-600 mr-2"></i> Step 1: Data Diri</h3>
+              <div>
+                <label class="block text-sm font-semibold text-slate-700 mb-2">Nama Lengkap</label>
+                <input type="text" id="applyFullName" readonly class="w-full px-4 py-3 rounded-xl border-2 border-slate-200 bg-slate-50" />
+              </div>
+              <div>
+                <label class="block text-sm font-semibold text-slate-700 mb-2">Nomor HP</label>
+                <input type="tel" id="applyPhone" readonly class="w-full px-4 py-3 rounded-xl border-2 border-slate-200 bg-slate-50" />
+              </div>
+              <button id="applyNextBtn" class="w-full py-4 gradient-bg text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition">Lanjut ke Data Pinjaman <i class="fas fa-arrow-right ml-2"></i></button>
+            </div>
+            <!-- Step 2 -->
+            <div id="applyStep2" class="space-y-5 hidden">
+              <h3 class="font-bold text-slate-900 text-lg"><i class="fas fa-money-bill-wave text-blue-600 mr-2"></i> Step 2: Data Pinjaman</h3>
+              <div>
+                <label class="block text-sm font-semibold text-slate-700 mb-2">Jumlah Pinjaman</label>
+                <input type="number" id="applyAmount" placeholder="10000000" min="1000000" max="500000000" class="w-full px-4 py-3 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none" />
+                <p class="text-xs text-slate-400 mt-1">Limit Anda: <span id="applyLimitInfo" class="font-semibold">Rp 0</span></p>
+              </div>
+              <div>
+                <label class="block text-sm font-semibold text-slate-700 mb-2">Tenor</label>
+                <select id="applyTenor" class="w-full px-4 py-3 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none font-medium">
+                  <option value="6">6 Bulan</option><option value="12">12 Bulan</option><option value="24">24 Bulan</option>
+                  <option value="36">36 Bulan</option><option value="48">48 Bulan</option><option value="60">60 Bulan</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-sm font-semibold text-slate-700 mb-2">Tujuan Pinjaman</label>
+                <select id="applyPurpose" class="w-full px-4 py-3 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none font-medium">
+                  <option value="">Pilih tujuan</option>
+                  <option value="Kebutuhan Mendesak">Kebutuhan Mendesak</option>
+                  <option value="Modal Usaha">Modal Usaha</option>
+                  <option value="Renovasi Rumah">Renovasi Rumah</option>
+                  <option value="Pendidikan">Pendidikan</option>
+                  <option value="Kebutuhan Pribadi">Kebutuhan Pribadi</option>
+                </select>
+              </div>
+              <!-- Estimasi -->
+              <div class="bg-blue-50 rounded-xl p-4">
+                <p class="text-sm text-slate-600 mb-2">Estimasi Cicilan:</p>
+                <div class="flex justify-between"><span>Cicilan/Bulan</span><span id="applyEstMonthly" class="font-bold">Rp 0</span></div>
+                <div class="flex justify-between"><span>Total Bunga</span><span id="applyEstInterest" class="font-bold">Rp 0</span></div>
+                <div class="flex justify-between"><span>Total Bayar</span><span id="applyEstTotal" class="font-bold">Rp 0</span></div>
+              </div>
+              <div class="flex gap-3">
+                <button id="applyBackBtn" class="px-6 py-4 bg-slate-100 text-slate-600 font-bold rounded-xl hover:bg-slate-200 transition"><i class="fas fa-arrow-left"></i></button>
+                <button id="applySubmitBtn" class="flex-1 py-4 gradient-bg text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition relative">
+                  <span class="btn-text"><i class="fas fa-paper-plane mr-2"></i> Submit Pengajuan</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============================================ HISTORY PAGE ============================================ -->
+        <section id="page-history" class="page-content hidden">
+          <h2 class="text-2xl font-extrabold text-slate-900 mb-6">Riwayat Pengajuan</h2>
+          <div class="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden">
+            <div class="overflow-x-auto">
+              <table class="w-full">
+                <thead class="bg-slate-50 border-b border-slate-200">
+                  <tr>
+                    <th class="text-left px-4 py-3 text-sm font-semibold text-slate-600">ID</th>
+                    <th class="text-left px-4 py-3 text-sm font-semibold text-slate-600">Jumlah</th>
+                    <th class="text-left px-4 py-3 text-sm font-semibold text-slate-600">Tenor</th>
+                    <th class="text-left px-4 py-3 text-sm font-semibold text-slate-600">Cicilan</th>
+                    <th class="text-left px-4 py-3 text-sm font-semibold text-slate-600">Status</th>
+                    <th class="text-left px-4 py-3 text-sm font-semibold text-slate-600">Tanggal</th>
+                  </tr>
+                </thead>
+                <tbody id="historyTable"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============================================ BALANCE PAGE ============================================ -->
+        <section id="page-balance" class="page-content hidden">
+          <h2 class="text-2xl font-extrabold text-slate-900 mb-6">Saldo Pinjaman</h2>
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="bg-gradient-to-br from-blue-600 to-cyan-500 rounded-2xl p-8 text-white">
+              <p class="text-sm opacity-80 mb-2">Saldo Saat Ini</p>
+              <p id="balanceAmount" class="text-4xl font-extrabold mb-6">Rp 0</p>
+              <div class="space-y-3 border-t border-white/20 pt-4">
+                <div class="flex justify-between"><span class="opacity-80">Status</span><span id="balanceStatus">Aktif</span></div>
+                <div class="flex justify-between"><span class="opacity-80">Limit</span><span id="balanceLimit">Rp 0</span></div>
+              </div>
+            </div>
+            <div class="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm">
+              <h3 class="font-bold text-slate-900 mb-4"><i class="fas fa-receipt text-blue-600 mr-2"></i> Transaksi Terbaru</h3>
+              <div id="balanceTransactions" class="space-y-3"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============================================ LIMIT PAGE ============================================ -->
+        <section id="page-limit" class="page-content hidden">
+          <h2 class="text-2xl font-extrabold text-slate-900 mb-6">Limit Pinjaman</h2>
+          <div class="bg-white rounded-2xl p-8 border border-slate-100 shadow-sm max-w-2xl">
+            <div class="text-center mb-6">
+              <div class="w-20 h-20 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <i class="fas fa-gauge text-blue-600 text-3xl"></i>
+              </div>
+              <p class="text-slate-500">Limit Pinjaman Anda</p>
+              <p id="limitAmount" class="text-4xl font-extrabold gradient-text mt-2">Rp 0</p>
+            </div>
+            <div class="bg-blue-50 rounded-xl p-4 text-sm text-slate-600">
+              <i class="fas fa-info-circle text-blue-600 mr-2"></i> Limit pinjaman dapat ditingkatkan oleh admin berdasarkan riwayat pembayaran dan profil Anda.
+            </div>
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- Notification Modal -->
+  <div id="notifModal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/50 p-4">
+    <div class="bg-white rounded-2xl max-w-md w-full max-h-[80vh] overflow-hidden flex flex-col">
+      <div class="p-5 border-b border-slate-100 flex justify-between items-center">
+        <h3 class="font-bold text-slate-900"><i class="fas fa-bell text-blue-600 mr-2"></i> Notifikasi</h3>
+        <button id="closeNotifBtn" class="text-slate-400 hover:text-slate-600"><i class="fas fa-times"></i></button>
+      </div>
+      <div id="notifList" class="flex-1 overflow-y-auto p-5 space-y-3"></div>
+    </div>
+  </div>
+
+  <!-- Withdrawal Modal -->
+  <div id="withdrawModal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/50 p-4">
+    <div class="bg-white rounded-2xl max-w-lg w-full max-h-[90vh] overflow-hidden flex flex-col">
+      <div class="p-5 border-b border-slate-100 flex justify-between items-center">
+        <h3 class="font-bold text-slate-900"><i class="fas fa-money-bill-wave text-amber-600 mr-2"></i> Form Penarikan Saldo</h3>
+        <button id="closeWithdrawBtn" class="text-slate-400 hover:text-slate-600"><i class="fas fa-times"></i></button>
+      </div>
+      <form id="withdrawForm" class="flex-1 overflow-y-auto p-6 space-y-4">
+        <div>
+          <label class="block text-sm font-semibold text-slate-700 mb-2">Nominal Penarikan</label>
+          <input type="number" id="withdrawAmount" min="100000" step="1000" class="w-full px-4 py-3 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none" placeholder="100000" />
+        </div>
+        <div class="grid md:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-sm font-semibold text-slate-700 mb-2">Nama Bank Tujuan</label>
+            <input type="text" id="withdrawBank" class="w-full px-4 py-3 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none" placeholder="Bank BCA" />
+          </div>
+          <div>
+            <label class="block text-sm font-semibold text-slate-700 mb-2">Atas Nama</label>
+            <input type="text" id="withdrawAccountName" class="w-full px-4 py-3 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none" placeholder="Nama pemilik rekening" />
+          </div>
+        </div>
+        <div>
+          <label class="block text-sm font-semibold text-slate-700 mb-2">Nomor Rekening</label>
+          <input type="text" id="withdrawAccountNumber" class="w-full px-4 py-3 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none" placeholder="1234567890" />
+        </div>
+        <div class="rounded-xl bg-amber-50 p-4 text-sm text-amber-800">
+          <i class="fas fa-circle-info mr-2"></i> Saldo yang tersedia saat ini akan digunakan sebagai nominal penarikan.
+        </div>
+        <button id="withdrawSubmitBtn" type="submit" class="w-full py-3 gradient-bg text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition relative"><span class="btn-text"><i class="fas fa-paper-plane mr-2"></i> Submit Penarikan</span></button>
+      </form>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+  <script src="/assets/js/api.js"></script>
+  <script src="/assets/js/dashboard.js"></script>
+</body>
+</html>

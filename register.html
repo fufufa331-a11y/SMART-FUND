@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Registrasi - SMART FUND</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { darkMode: 'class' };</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" />
+  <link rel="stylesheet" href="/assets/css/style.css" />
+</head>
+<body class="font-jakarta antialiased min-h-screen flex">
+  <div id="pageLoader" class="page-loader"><div class="loader-logo mx-auto"></div></div>
+
+  <div class="flex w-full">
+    <!-- Left Brand Panel -->
+    <div class="hidden lg:flex lg:w-1/2 gradient-bg relative overflow-hidden">
+      <div class="absolute inset-0 hero-pattern"></div>
+      <div class="relative z-10 flex flex-col justify-between p-12 text-white">
+        <a href="/" class="flex items-center gap-2">
+          <div class="w-10 h-10 rounded-xl bg-white/20 backdrop-blur flex items-center justify-center text-white font-bold text-xl">
+            <i class="fas fa-wallet"></i>
+          </div>
+          <span class="text-xl font-extrabold">SMART FUND</span>
+        </a>
+        <div>
+          <h1 class="text-4xl font-extrabold leading-tight mb-4">Bergabung dengan SMART FUND 🚀</h1>
+          <p class="text-lg opacity-90 mb-8">Daftar sekarang dan nikmati kemudahan pinjaman online dengan bunga kompetitif mulai 5% per tahun.</p>
+          <div class="space-y-4">
+            <div class="flex items-center gap-3"><i class="fas fa-circle-check text-xl"></i><span>Proses registrasi cepat</span></div>
+            <div class="flex items-center gap-3"><i class="fas fa-circle-check text-xl"></i><span>Otomatis login setelah daftar</span></div>
+            <div class="flex items-center gap-3"><i class="fas fa-circle-check text-xl"></i><span>Akses dashboard lengkap</span></div>
+          </div>
+        </div>
+        <p class="text-sm opacity-70">&copy; 2026 SMART FUND. All rights reserved.</p>
+      </div>
+    </div>
+
+    <!-- Right Form Panel -->
+    <div class="flex-1 lg:w-1/2 flex items-center justify-center p-6 md:p-12 bg-slate-50">
+      <div class="w-full max-w-md">
+        <a href="/" class="lg:hidden flex items-center gap-2 justify-center mb-8">
+          <div class="w-10 h-10 rounded-xl gradient-bg flex items-center justify-center text-white font-bold text-xl">
+            <i class="fas fa-wallet"></i>
+          </div>
+          <span class="text-xl font-extrabold gradient-text">SMART FUND</span>
+        </a>
+
+        <div class="bg-white rounded-3xl shadow-xl p-8 border border-slate-100">
+          <div class="flex justify-between items-center mb-6">
+            <div>
+              <h2 class="text-2xl font-extrabold text-slate-900">Daftar Akun</h2>
+              <p class="text-slate-500 text-sm mt-1">Buat akun SMART FUND baru</p>
+            </div>
+            <button id="darkToggle" class="w-10 h-10 rounded-lg bg-slate-100 flex items-center justify-center">
+              <i class="fas fa-moon text-slate-600"></i>
+            </button>
+          </div>
+
+          <!-- Step Indicators -->
+          <div class="flex items-center justify-center mb-6">
+            <div class="flex items-center gap-2">
+              <div id="ind1" class="step-indicator active">1</div>
+              <div class="w-10 h-1 bg-slate-200 rounded" id="line1"></div>
+              <div id="ind2" class="step-indicator inactive">2</div>
+            </div>
+          </div>
+
+          <!-- Step 1: Data Pribadi -->
+          <div id="regStep1" class="space-y-4">
+            <div>
+              <label class="block text-sm font-semibold text-slate-700 mb-2">Nama Lengkap</label>
+              <div class="relative">
+                <i class="fas fa-id-card absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                <input type="text" id="fullName" placeholder="Nama lengkap Anda" class="w-full pl-11 pr-4 py-3 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none" />
+              </div>
+            </div>
+            <div>
+              <label class="block text-sm font-semibold text-slate-700 mb-2">Email</label>
+              <div class="relative">
+                <i class="fas fa-envelope absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                <input type="email" id="email" placeholder="email@example.com" class="w-full pl-11 pr-4 py-3 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none" />
+              </div>
+            </div>
+            <div>
+              <label class="block text-sm font-semibold text-slate-700 mb-2">Nomor HP</label>
+              <div class="relative">
+                <i class="fas fa-phone absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                <input type="tel" id="phone" placeholder="0812xxxxxxxx" class="w-full pl-11 pr-4 py-3 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none" />
+              </div>
+            </div>
+            <div>
+              <label class="block text-sm font-semibold text-slate-700 mb-2">Password</label>
+              <div class="relative">
+                <i class="fas fa-lock absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                <input type="password" id="password" placeholder="Min 6 karakter (huruf & angka)" class="w-full pl-11 pr-12 py-3 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none" />
+                <button type="button" id="togglePwd1" class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-blue-600"><i class="fas fa-eye"></i></button>
+              </div>
+            </div>
+            <div>
+              <label class="block text-sm font-semibold text-slate-700 mb-2">Konfirmasi Password</label>
+              <div class="relative">
+                <i class="fas fa-lock absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                <input type="password" id="confirmPassword" placeholder="Ulangi password" class="w-full pl-11 pr-12 py-3 rounded-xl border-2 border-slate-200 focus:border-blue-500 outline-none" />
+                <button type="button" id="togglePwd2" class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-blue-600"><i class="fas fa-eye"></i></button>
+              </div>
+            </div>
+            <button id="toStep2Btn" class="w-full py-4 gradient-bg text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition">
+              Lanjut <i class="fas fa-arrow-right ml-2"></i>
+            </button>
+          </div>
+
+          <!-- Step 2: Syarat & Ketentuan -->
+          <div id="regStep2" class="space-y-4 hidden">
+            <div class="text-center mb-4">
+              <div class="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mx-auto mb-3">
+                <i class="fas fa-file-signature text-green-600 text-2xl"></i>
+              </div>
+              <h3 class="font-bold text-slate-900">Syarat & Ketentuan</h3>
+            </div>
+            <div class="bg-slate-50 rounded-xl p-4 max-h-40 overflow-y-auto text-sm text-slate-600 border border-slate-200">
+              <p class="mb-2">Dengan mendaftar di SMART FUND, Anda menyetujui:</p>
+              <ul class="list-disc list-inside space-y-1">
+                <li>Data yang dimasukkan adalah benar dan dapat dipertanggungjawabkan.</li>
+                <li>Pinjaman akan diproses sesuai kebijakan dan ketentuan SMART FUND.</li>
+                <li>Bunga dikenakan mulai 5% per tahun sesuai tenor.</li>
+                <li>Platform berizin dan diawasi OJK.</li>
+                <li>Pengajuan dapat disetujui atau ditolak oleh admin.</li>
+              </ul>
+            </div>
+            <label class="flex items-start gap-3 cursor-pointer p-3 rounded-xl hover:bg-blue-50 transition">
+              <input type="checkbox" id="agreeTerms" class="w-5 h-5 mt-0.5 rounded border-slate-300 text-blue-600 focus:ring-blue-500" />
+              <span class="text-sm text-slate-700">Saya menyetujui <a href="#" class="text-blue-600 font-semibold">Syarat & Ketentuan</a> serta <a href="#" class="text-blue-600 font-semibold">Kebijakan Privasi</a> SMART FUND</span>
+            </label>
+            <div class="flex gap-3">
+              <button id="backTo1Btn" class="px-6 py-4 bg-slate-100 text-slate-600 font-bold rounded-xl hover:bg-slate-200 transition">
+                <i class="fas fa-arrow-left"></i>
+              </button>
+              <button id="submitRegBtn" class="flex-1 py-4 gradient-bg text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition relative">
+                <span class="btn-text"><i class="fas fa-user-plus mr-2"></i> Daftar Sekarang</span>
+              </button>
+            </div>
+          </div>
+
+          <p class="text-center text-slate-600 text-sm mt-6">
+            Sudah punya akun?
+            <a href="/login.html" class="text-blue-600 font-bold hover:underline">Masuk</a>
+          </p>
+        </div>
+
+        <p class="text-center text-sm text-slate-400 mt-6">
+          <a href="/" class="hover:text-blue-600"><i class="fas fa-arrow-left mr-1"></i> Kembali ke Beranda</a>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+  <script src="/assets/js/api.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      hidePageLoader();
+      if (Token.get()) { window.location.href = '/dashboard.html'; return; }
+
+      // Dark mode
+      const darkToggle = document.getElementById('darkToggle');
+      const updateIcon = () => { darkToggle.innerHTML = DarkMode.isDark() ? '<i class="fas fa-sun text-amber-500"></i>' : '<i class="fas fa-moon text-slate-600"></i>'; };
+      updateIcon();
+      darkToggle.addEventListener('click', () => { DarkMode.toggle(); updateIcon(); });
+
+      // Toggle passwords
+      ['togglePwd1', 'togglePwd2'].forEach((id) => {
+        const btn = document.getElementById(id);
+        const input = btn.previousElementSibling;
+        btn.addEventListener('click', () => {
+          const isPwd = input.type === 'password';
+          input.type = isPwd ? 'text' : 'password';
+          btn.innerHTML = isPwd ? '<i class="fas fa-eye-slash"></i>' : '<i class="fas fa-eye"></i>';
+        });
+      });
+
+      // Step navigation
+      const steps = { 1: document.getElementById('regStep1'), 2: document.getElementById('regStep2') };
+      const inds = { 1: document.getElementById('ind1'), 2: document.getElementById('ind2') };
+      const lines = { 1: document.getElementById('line1') };
+      let current = 1;
+
+      function goStep(s) {
+        current = s;
+        Object.values(steps).forEach((el) => el.classList.add('hidden'));
+        steps[s].classList.remove('hidden');
+        [1, 2].forEach((i) => {
+          inds[i].classList.remove('active', 'complete', 'inactive');
+          if (i < s) inds[i].classList.add('complete');
+          else if (i === s) inds[i].classList.add('active');
+          else inds[i].classList.add('inactive');
+        });
+        if (lines[1]) {
+          lines[1].classList.remove('bg-blue-500', 'bg-slate-200');
+          lines[1].classList.add(s > 1 ? 'bg-blue-500' : 'bg-slate-200');
+        }
+      }
+
+      // Step 1 -> 2
+      document.getElementById('toStep2Btn').addEventListener('click', () => {
+        const fullName = document.getElementById('fullName').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const phone = document.getElementById('phone').value.trim();
+        const password = document.getElementById('password').value;
+        const confirm = document.getElementById('confirmPassword').value;
+
+        if (!fullName || fullName.length < 3) return showToast('Nama lengkap minimal 3 karakter', 'error');
+        if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return showToast('Email tidak valid', 'error');
+        if (!phone || !/^((\+62|62|0)8[1-9]\d{6,11})$/.test(phone.replace(/[\s-]/g, ''))) return showToast('Nomor HP tidak valid', 'error');
+        if (!password || password.length < 6) return showToast('Password minimal 6 karakter', 'error');
+        if (!/[a-zA-Z]/.test(password) || !/[0-9]/.test(password)) return showToast('Password harus mengandung huruf & angka', 'error');
+        if (password !== confirm) return showToast('Konfirmasi password tidak cocok', 'error');
+
+        goStep(2);
+      });
+
+      document.getElementById('backTo1Btn').addEventListener('click', () => goStep(1));
+
+      // Step 2 -> submit
+      const submitBtn = document.getElementById('submitRegBtn');
+      submitBtn.addEventListener('click', async () => {
+        if (!document.getElementById('agreeTerms').checked) return showToast('Anda harus menyetujui Syarat & Ketentuan', 'error');
+
+        const body = {
+          fullName: document.getElementById('fullName').value.trim(),
+          email: document.getElementById('email').value.trim(),
+          phone: document.getElementById('phone').value.trim(),
+          password: document.getElementById('password').value,
+          confirmPassword: document.getElementById('confirmPassword').value,
+        };
+
+        setBtnLoading(submitBtn, true);
+        const res = await api('/auth/register', { method: 'POST', body });
+        setBtnLoading(submitBtn, false);
+
+        if (res.success) {
+          Token.set(res.token, false);
+          await alertSuccess('Registrasi Berhasil!', 'Akun Anda telah dibuat. Anda otomatis login dan akan diarahkan ke dashboard.');
+          window.location.href = '/dashboard.html';
+        } else {
+          showToast(res.message || 'Registrasi gagal', 'error');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
