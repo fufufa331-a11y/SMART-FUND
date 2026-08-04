@@ -89,7 +89,7 @@ async function showAdminApp(admin) {
   // Logout
   document.getElementById('adminLogoutBtn').addEventListener('click', async () => {
     const ok = await alertConfirm('Logout Admin?', 'Anda akan keluar dari dashboard admin.');
-    if (ok) { Token.clear(); window.location.href = '/admin.html'; }
+    if (ok) { Token.clear(); window.location.href = `${BASE_PATH}/admin.html`; }
   });
 
   // Load dashboard

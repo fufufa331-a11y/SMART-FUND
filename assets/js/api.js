@@ -2,7 +2,8 @@
    SMART FUND - API Helper & Utilities
    ============================================ */
 
-const API_BASE = '/api';
+const BASE_PATH = '/smart-id-global';
+const API_BASE = `${BASE_PATH}/api`;
 
 // ============================================
 // TOKEN MANAGEMENT
@@ -70,7 +71,7 @@ async function api(endpoint, options = {}) {
       if (res.status === 401 && !endpoint.includes('/login') && !endpoint.includes('/register')) {
         Token.clear();
         if (window.location.pathname.includes('dashboard') || window.location.pathname.includes('admin')) {
-          window.location.href = '/login.html';
+          window.location.href = `${BASE_PATH}/login.html`;
         }
       }
       return { success: false, message: data.message || 'Terjadi kesalahan', errors: data.errors, data: data.data };
@@ -208,13 +209,13 @@ const DarkMode = {
 async function requireUser() {
   const token = Token.get();
   if (!token) {
-    window.location.href = '/login.html';
+    window.location.href = `${BASE_PATH}/login.html`;
     return null;
   }
   const res = await api('/auth/me');
   if (!res.success) {
     Token.clear();
-    window.location.href = '/login.html';
+    window.location.href = `${BASE_PATH}/login.html`;
     return null;
   }
   return res.data;
@@ -223,13 +224,13 @@ async function requireUser() {
 async function requireAdmin() {
   const token = AdminToken.get();
   if (!token) {
-    window.location.href = '/admin.html';
+    window.location.href = `${BASE_PATH}/admin.html`;
     return null;
   }
   const res = await api('/admin/me');
   if (!res.success) {
     Token.clear();
-    window.location.href = '/admin.html';
+    window.location.href = `${BASE_PATH}/admin.html`;
     return null;
   }
   return res.data;

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+  <base href="/smart-id-global/" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Registrasi - SMART FUND</title>
@@ -160,7 +161,7 @@
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       hidePageLoader();
-      if (Token.get()) { window.location.href = '/dashboard.html'; return; }
+      if (Token.get()) { window.location.href = `${BASE_PATH}/dashboard.html`; return; }
 
       // Dark mode
       const darkToggle = document.getElementById('darkToggle');
@@ -241,7 +242,7 @@
         if (res.success) {
           Token.set(res.token, false);
           await alertSuccess('Registrasi Berhasil!', 'Akun Anda telah dibuat. Anda otomatis login dan akan diarahkan ke dashboard.');
-          window.location.href = '/dashboard.html';
+          window.location.href = `${BASE_PATH}/dashboard.html`;
         } else {
           showToast(res.message || 'Registrasi gagal', 'error');
         }

@@ -90,8 +90,8 @@ document.addEventListener('DOMContentLoaded', () => {
           confirmButtonText: 'Login Sekarang',
           cancelButtonText: 'Daftar',
         }).then((result) => {
-          if (result.isConfirmed) window.location.href = '/login.html';
-          else if (result.dismiss === Swal.DismissReason.cancel) window.location.href = '/register.html';
+          if (result.isConfirmed) window.location.href = `${BASE_PATH}/login.html`;
+          else if (result.dismiss === Swal.DismissReason.cancel) window.location.href = `${BASE_PATH}/register.html`;
         });
       } else {
         // Pre-fill form & scroll
@@ -167,8 +167,8 @@ document.addEventListener('DOMContentLoaded', () => {
           confirmButtonText: 'Login Sekarang',
           cancelButtonText: 'Daftar',
         }).then((r) => {
-          if (r.isConfirmed) window.location.href = '/login.html';
-          else if (r.dismiss === Swal.DismissReason.cancel) window.location.href = '/register.html';
+          if (r.isConfirmed) window.location.href = `${BASE_PATH}/login.html`;
+          else if (r.dismiss === Swal.DismissReason.cancel) window.location.href = `${BASE_PATH}/register.html`;
         });
         return;
       }
@@ -190,7 +190,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (res.success) {
         await alertSuccess('Pengajuan Berhasil!', `Pengajuan pinjaman #${res.data.applicationId} telah dikirim. Status: Menunggu Persetujuan. Admin akan segera memverifikasi.`);
-        window.location.href = '/dashboard.html';
+        window.location.href = `${BASE_PATH}/dashboard.html`;
       } else {
         showToast(res.message || 'Gagal mengajukan pinjaman', 'error');
       }

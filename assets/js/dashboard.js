@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   // Logout
   document.getElementById('logoutBtn').addEventListener('click', async () => {
     const ok = await alertConfirm('Logout?', 'Anda akan keluar dari akun ini.');
-    if (ok) { Token.clear(); window.location.href = '/login.html'; }
+    if (ok) { Token.clear(); window.location.href = `${BASE_PATH}/login.html`; }
   });
 
   // Notifications

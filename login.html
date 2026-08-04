@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+  <base href="/smart-id-global/" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Login - SMART FUND</title>
@@ -123,7 +124,7 @@
 
       // Redirect if already logged in
       if (Token.get()) {
-        window.location.href = '/dashboard.html';
+        window.location.href = `${BASE_PATH}/dashboard.html`;
         return;
       }
 
@@ -163,7 +164,7 @@
         if (res.success) {
           Token.set(res.token, remember);
           showToast('Login berhasil! Mengalihkan...', 'success');
-          setTimeout(() => (window.location.href = '/dashboard.html'), 800);
+          setTimeout(() => (window.location.href = `${BASE_PATH}/dashboard.html`), 800);
         } else {
           showToast(res.message || 'Login gagal', 'error');
         }
