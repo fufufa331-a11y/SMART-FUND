@@ -6,6 +6,7 @@
   <title>SMART FUND - Pinjaman Online Terpercaya | Bunga Mulai 5%</title>
   <meta name="description" content="SMART FUND - Platform pinjaman online terpercaya berizin OJK. Bunga mulai 5% per tahun, proses cepat, persyaratan mudah. Ajukan pinjaman Rp1jt - Rp500jt." />
   <meta name="keywords" content="pinjaman online, pinjaman uang, smart fund, fintech, OJK, kredivo, akulaku" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -46,10 +47,8 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-16 md:h-20">
         <!-- Logo -->
-        <a href="/" class="flex items-center gap-2">
-          <div class="w-10 h-10 rounded-xl gradient-bg flex items-center justify-center text-white font-bold text-xl shadow-lg">
-            <i class="fas fa-wallet"></i>
-          </div>
+        <a href="/" class="flex items-center gap-2.5 group">
+          <img src="/assets/img/logo.png" alt="SMART FUND Logo" class="w-10 h-10 object-contain transition-transform duration-300 group-hover:scale-110 animate-float" />
           <span class="text-xl font-extrabold gradient-text">SMART FUND</span>
         </a>
 
@@ -64,11 +63,11 @@
 
         <!-- Actions -->
         <div class="flex items-center gap-3">
-          <button id="darkToggle" class="w-10 h-10 rounded-lg bg-slate-100 hover:bg-slate-200 flex items-center justify-center transition">
+          <button id="darkToggle" class="w-10 h-10 rounded-lg bg-slate-100 hover:bg-slate-200 flex items-center justify-center transition hover:rotate-12">
             <i class="fas fa-moon text-slate-600"></i>
           </button>
-          <a href="/login.html" class="hidden sm:inline-block px-5 py-2.5 text-blue-600 font-semibold hover:text-blue-700 transition">Masuk</a>
-          <a href="/register.html" class="px-5 py-2.5 gradient-bg text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition hover:scale-105">
+          <a href="/login.html" class="hidden sm:inline-block px-5 py-2.5 text-blue-600 font-semibold hover:text-blue-700 transition hover:scale-105">Masuk</a>
+          <a href="/register.html" class="px-5 py-2.5 gradient-bg text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition hover:scale-105 btn-shine">
             <i class="fas fa-user-plus mr-1"></i> Daftar
           </a>
           <button id="mobileMenuBtn" class="lg:hidden w-10 h-10 rounded-lg bg-slate-100 flex items-center justify-center">
@@ -97,7 +96,7 @@
       <div class="grid lg:grid-cols-2 gap-12 items-center">
         <!-- Left -->
         <div data-aos="fade-right">
-          <span class="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 text-blue-600 rounded-full text-sm font-semibold mb-6">
+          <span class="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 text-blue-600 rounded-full text-sm font-semibold mb-6 animate-bounce-in">
             <i class="fas fa-shield-halved"></i> Berizin & Diawasi OJK
           </span>
           <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight text-slate-900 mb-6">
@@ -107,24 +106,24 @@
             SMART FUND membantu masyarakat memenuhi kebutuhan mendesak, modal usaha, renovasi rumah, pendidikan, hingga kebutuhan pribadi dengan proses praktis, transparan, dan aman.
           </p>
           <div class="flex flex-wrap gap-4 mb-8">
-            <a href="#calculator" class="px-8 py-4 gradient-bg text-white font-bold rounded-xl shadow-xl hover:shadow-2xl transition hover:scale-105">
+            <a href="#calculator" class="px-8 py-4 gradient-bg text-white font-bold rounded-xl shadow-xl hover:shadow-2xl transition hover:scale-105 btn-shine">
               <i class="fas fa-calculator mr-2"></i> Simulasi Pinjaman
             </a>
-            <a href="/register.html" class="px-8 py-4 bg-white text-blue-600 font-bold rounded-xl shadow-lg border-2 border-blue-100 hover:border-blue-300 transition">
+            <a href="/register.html" class="px-8 py-4 bg-white text-blue-600 font-bold rounded-xl shadow-lg border-2 border-blue-100 hover:border-blue-300 transition hover:scale-105 hover:border-blue-300">
               <i class="fas fa-rocket mr-2"></i> Ajukan Sekarang
             </a>
           </div>
           <!-- Stats -->
           <div class="grid grid-cols-3 gap-4 max-w-md">
-            <div>
+            <div class="stat-card bg-white/50 rounded-xl p-3 text-center">
               <p class="text-2xl md:text-3xl font-extrabold gradient-text">50K+</p>
               <p class="text-sm text-slate-500">Nasabah</p>
             </div>
-            <div>
+            <div class="stat-card bg-white/50 rounded-xl p-3 text-center">
               <p class="text-2xl md:text-3xl font-extrabold gradient-text">5%</p>
               <p class="text-sm text-slate-500">Bunga Mulai</p>
             </div>
-            <div>
+            <div class="stat-card bg-white/50 rounded-xl p-3 text-center">
               <p class="text-2xl md:text-3xl font-extrabold gradient-text">24/7</p>
               <p class="text-sm text-slate-500">Layanan</p>
             </div>
@@ -133,9 +132,9 @@
 
         <!-- Right - Hero Card -->
         <div data-aos="fade-left" class="relative">
-          <div class="absolute -top-8 -right-8 w-72 h-72 bg-blue-200 rounded-full blur-3xl opacity-40"></div>
-          <div class="absolute -bottom-8 -left-8 w-72 h-72 bg-cyan-200 rounded-full blur-3xl opacity-40"></div>
-          <div class="relative bg-white rounded-3xl shadow-2xl p-8 border border-slate-100">
+          <div class="absolute -top-8 -right-8 w-72 h-72 bg-blue-200 rounded-full blur-3xl opacity-40 animate-float-slow"></div>
+          <div class="absolute -bottom-8 -left-8 w-72 h-72 bg-cyan-200 rounded-full blur-3xl opacity-40 animate-float"></div>
+          <div class="relative bg-white rounded-3xl shadow-2xl p-8 border border-slate-100 hover-lift">
             <div class="flex items-center justify-between mb-6">
               <div>
                 <p class="text-sm text-slate-500">Pinjaman Hingga</p>
@@ -183,32 +182,32 @@
 
       <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
         <!-- Feature 1 -->
-        <div class="card-hover bg-white rounded-2xl p-8 border border-slate-100 shadow-sm" data-aos="fade-up" data-aos-delay="0">
-          <div class="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mb-6">
+        <div class="card-hover bg-white rounded-2xl p-8 border border-slate-100 shadow-sm stagger-1" data-aos="fade-up" data-aos-delay="0">
+          <div class="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mb-6 feature-icon">
             <i class="fas fa-percent text-green-600 text-2xl"></i>
           </div>
           <h3 class="text-xl font-bold text-slate-900 mb-3">Bunga Mulai 5%</h3>
           <p class="text-slate-600">Nikmati bunga kompetitif mulai 5% per tahun sehingga cicilan menjadi lebih ringan.</p>
         </div>
         <!-- Feature 2 -->
-        <div class="card-hover bg-white rounded-2xl p-8 border border-slate-100 shadow-sm" data-aos="fade-up" data-aos-delay="100">
-          <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mb-6">
+        <div class="card-hover bg-white rounded-2xl p-8 border border-slate-100 shadow-sm stagger-2" data-aos="fade-up" data-aos-delay="100">
+          <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mb-6 feature-icon">
             <i class="fas fa-bolt text-blue-600 text-2xl"></i>
           </div>
           <h3 class="text-xl font-bold text-slate-900 mb-3">Proses Cepat</h3>
           <p class="text-slate-600">Ajukan pinjaman secara online kapan saja tanpa proses yang rumit dan berbelit.</p>
         </div>
         <!-- Feature 3 -->
-        <div class="card-hover bg-white rounded-2xl p-8 border border-slate-100 shadow-sm" data-aos="fade-up" data-aos-delay="200">
-          <div class="w-16 h-16 bg-purple-100 rounded-2xl flex items-center justify-center mb-6">
+        <div class="card-hover bg-white rounded-2xl p-8 border border-slate-100 shadow-sm stagger-3" data-aos="fade-up" data-aos-delay="200">
+          <div class="w-16 h-16 bg-purple-100 rounded-2xl flex items-center justify-center mb-6 feature-icon">
             <i class="fas fa-file-circle-check text-purple-600 text-2xl"></i>
           </div>
           <h3 class="text-xl font-bold text-slate-900 mb-3">Persyaratan Mudah</h3>
           <p class="text-slate-600">Dokumen sederhana dengan proses verifikasi yang praktis dan cepat.</p>
         </div>
         <!-- Feature 4 -->
-        <div class="card-hover bg-white rounded-2xl p-8 border border-slate-100 shadow-sm" data-aos="fade-up" data-aos-delay="300">
-          <div class="w-16 h-16 bg-amber-100 rounded-2xl flex items-center justify-center mb-6">
+        <div class="card-hover bg-white rounded-2xl p-8 border border-slate-100 shadow-sm stagger-4" data-aos="fade-up" data-aos-delay="300">
+          <div class="w-16 h-16 bg-amber-100 rounded-2xl flex items-center justify-center mb-6 feature-icon">
             <i class="fas fa-shield-halved text-amber-600 text-2xl"></i>
           </div>
           <h3 class="text-xl font-bold text-slate-900 mb-3">Aman & Terpercaya</h3>
@@ -227,7 +226,7 @@
         <p class="text-slate-600 mt-4">Atur jumlah pinjaman dan tenor untuk melihat estimasi cicilan</p>
       </div>
 
-      <div class="bg-white rounded-3xl shadow-2xl p-6 md:p-10 border border-slate-100" data-aos="zoom-in">
+      <div class="bg-white rounded-3xl shadow-2xl p-6 md:p-10 border border-slate-100 hover-lift" data-aos="zoom-in">
         <div class="grid md:grid-cols-2 gap-8">
           <!-- Input -->
           <div class="space-y-8">
@@ -300,7 +299,7 @@
         <p class="text-slate-600 mt-4">Isi data berikut untuk mengajukan pinjaman</p>
       </div>
 
-      <div class="bg-white rounded-3xl shadow-xl p-6 md:p-10 border border-slate-100" data-aos="fade-up">
+      <div class="bg-white rounded-3xl shadow-xl p-6 md:p-10 border border-slate-100 hover-lift" data-aos="fade-up">
         <!-- Steps -->
         <div class="flex items-center justify-center mb-10">
           <div class="flex items-center gap-2">
@@ -378,7 +377,7 @@
         <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 mt-2">Apa Kata Nasabah Kami</h2>
       </div>
       <div class="grid md:grid-cols-3 gap-6">
-        <div class="bg-white rounded-2xl p-8 shadow-sm border border-slate-100 card-hover" data-aos="fade-up" data-aos-delay="0">
+        <div class="bg-white rounded-2xl p-8 shadow-sm border border-slate-100 card-hover stagger-1" data-aos="fade-up" data-aos-delay="0">
           <div class="flex text-amber-400 mb-4">
             <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
           </div>
@@ -391,7 +390,7 @@
             </div>
           </div>
         </div>
-        <div class="bg-white rounded-2xl p-8 shadow-sm border border-slate-100 card-hover" data-aos="fade-up" data-aos-delay="100">
+        <div class="bg-white rounded-2xl p-8 shadow-sm border border-slate-100 card-hover stagger-2" data-aos="fade-up" data-aos-delay="100">
           <div class="flex text-amber-400 mb-4">
             <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
           </div>
@@ -404,7 +403,7 @@
             </div>
           </div>
         </div>
-        <div class="bg-white rounded-2xl p-8 shadow-sm border border-slate-100 card-hover" data-aos="fade-up" data-aos-delay="200">
+        <div class="bg-white rounded-2xl p-8 shadow-sm border border-slate-100 card-hover stagger-3" data-aos="fade-up" data-aos-delay="200">
           <div class="flex text-amber-400 mb-4">
             <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
           </div>
@@ -437,9 +436,9 @@
   <!-- ============================================ CTA ============================================ -->
   <section class="py-16 gradient-bg">
     <div class="max-w-4xl mx-auto px-4 text-center text-white" data-aos="zoom-in">
-      <h2 class="text-3xl md:text-4xl font-extrabold mb-4">Siap Mengajukan Pinjaman?</h2>
+      <h2 class="text-3xl md:text-4xl font-extrabold mb-4 animate-float">Siap Mengajukan Pinjaman?</h2>
       <p class="text-lg opacity-90 mb-8">Daftar sekarang dan nikmati kemudahan pinjaman online dengan bunga kompetitif</p>
-      <a href="/register.html" class="inline-block px-10 py-4 bg-white text-blue-600 font-bold rounded-xl shadow-xl hover:scale-105 transition">
+      <a href="/register.html" class="inline-block px-10 py-4 bg-white text-blue-600 font-bold rounded-xl shadow-xl hover:scale-105 transition btn-shine">
         <i class="fas fa-user-plus mr-2"></i> Daftar Sekarang
       </a>
     </div>
@@ -450,10 +449,8 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid md:grid-cols-4 gap-8 mb-12">
         <div>
-          <div class="flex items-center gap-2 mb-4">
-            <div class="w-10 h-10 rounded-xl gradient-bg flex items-center justify-center text-white font-bold">
-              <i class="fas fa-wallet"></i>
-            </div>
+          <div class="flex items-center gap-2.5 mb-4">
+            <img src="/assets/img/logo.png" alt="SMART FUND Logo" class="w-10 h-10 object-contain" />
             <span class="text-xl font-extrabold text-white">SMART FUND</span>
           </div>
           <p class="text-sm text-slate-400">Platform pinjaman online terpercaya berizin OJK. Solusi keuangan untuk masa depan Anda.</p>
@@ -505,5 +502,16 @@
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
   <script src="/assets/js/api.js"></script>
   <script src="/assets/js/main.js"></script>
+  <script>
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        navbar.classList.add('navbar-scrolled');
+      } else {
+        navbar.classList.remove('navbar-scrolled');
+      }
+    });
+  </script>
 </body>
 </html>

@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dashboard - SMART FUND</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <script src="https://cdn.tailwindcss.com"></script>
   <script>tailwind.config = { darkMode: 'class' };</script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -22,10 +23,8 @@
     <!-- Sidebar -->
     <aside id="sidebar" class="sidebar w-72 bg-white border-r border-slate-200 flex flex-col fixed md:sticky top-0 h-screen z-50">
       <div class="p-6 border-b border-slate-100">
-        <a href="/" class="flex items-center gap-2">
-          <div class="w-10 h-10 rounded-xl gradient-bg flex items-center justify-center text-white font-bold text-xl">
-            <i class="fas fa-wallet"></i>
-          </div>
+        <a href="/" class="flex items-center gap-2.5 group">
+          <img src="/assets/img/logo.png" alt="SMART FUND Logo" class="w-10 h-10 object-contain transition-transform duration-300 group-hover:scale-110 animate-float" />
           <span class="text-lg font-extrabold gradient-text">SMART FUND</span>
         </a>
       </div>
@@ -81,7 +80,7 @@
           </div>
 
           <!-- Status Akun -->
-          <div class="bg-white rounded-2xl p-5 border border-slate-100 shadow-sm mb-6 flex items-center justify-between">
+          <div class="bg-white rounded-2xl p-5 border border-slate-100 shadow-sm mb-6 flex items-center justify-between stat-card">
             <div class="flex items-center gap-3">
               <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center">
                 <i class="fas fa-shield-halved text-blue-600 text-xl"></i>
@@ -96,43 +95,43 @@
 
           <!-- Stats Cards -->
           <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-            <div class="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm">
+            <div class="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm stat-card stagger-1">
               <div class="flex items-center justify-between mb-4">
-                <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center"><i class="fas fa-wallet text-green-600 text-xl"></i></div>
+                <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center feature-icon"><i class="fas fa-wallet text-green-600 text-xl"></i></div>
                 <i class="fas fa-arrow-trend-up text-green-500"></i>
               </div>
               <p class="text-sm text-slate-500">Saldo Pinjaman</p>
               <p id="statBalance" class="text-2xl font-extrabold text-slate-900 mt-1">Rp 0</p>
             </div>
-            <div class="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm">
+            <div class="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm stat-card stagger-2">
               <div class="flex items-center justify-between mb-4">
-                <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center"><i class="fas fa-gauge text-blue-600 text-xl"></i></div>
+                <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center feature-icon"><i class="fas fa-gauge text-blue-600 text-xl"></i></div>
                 <i class="fas fa-arrow-trend-up text-blue-500"></i>
               </div>
               <p class="text-sm text-slate-500">Limit Pinjaman</p>
               <p id="statLimit" class="text-2xl font-extrabold text-slate-900 mt-1">Rp 0</p>
             </div>
-            <div class="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm">
+            <div class="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm stat-card stagger-3">
               <div class="flex items-center justify-between mb-4">
-                <div class="w-12 h-12 bg-amber-100 rounded-xl flex items-center justify-center"><i class="fas fa-file-invoice-dollar text-amber-600 text-xl"></i></div>
+                <div class="w-12 h-12 bg-amber-100 rounded-xl flex items-center justify-center feature-icon"><i class="fas fa-file-invoice-dollar text-amber-600 text-xl"></i></div>
                 <i class="fas fa-arrow-trend-down text-amber-500"></i>
               </div>
               <p class="text-sm text-slate-500">Withdrawal</p>
               <p id="statTagihan" class="text-2xl font-extrabold text-slate-900 mt-1">Rp 0</p>
-              <button id="openWithdrawBtn" class="mt-4 w-full px-4 py-2 rounded-xl bg-amber-500 text-white font-semibold hover:bg-amber-600 transition">Tarik Saldo</button>
+              <button id="openWithdrawBtn" class="mt-4 w-full px-4 py-2 rounded-xl bg-amber-500 text-white font-semibold hover:bg-amber-600 transition btn-shine">Tarik Saldo</button>
             </div>
           </div>
 
           <!-- Status Pengajuan & Riwayat -->
           <div class="grid lg:grid-cols-2 gap-6">
-            <div class="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm">
+            <div class="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm stat-card stagger-4">
               <h3 class="font-bold text-slate-900 mb-4"><i class="fas fa-info-circle text-blue-600 mr-2"></i> Status Pengajuan Terakhir</h3>
               <div id="lastApplication" class="text-center py-8 text-slate-400">
                 <i class="fas fa-inbox text-4xl mb-3"></i>
                 <p>Belum ada pengajuan</p>
               </div>
             </div>
-            <div class="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm">
+            <div class="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm stat-card stagger-5">
               <h3 class="font-bold text-slate-900 mb-4"><i class="fas fa-receipt text-blue-600 mr-2"></i> Riwayat Transaksi</h3>
               <div id="recentTransactions" class="space-y-3">
                 <div class="text-center py-8 text-slate-400"><i class="fas fa-inbox text-4xl mb-3"></i><p>Belum ada transaksi</p></div>
@@ -227,7 +226,7 @@
         <section id="page-balance" class="page-content hidden">
           <h2 class="text-2xl font-extrabold text-slate-900 mb-6">Saldo Pinjaman</h2>
           <div class="grid md:grid-cols-2 gap-6">
-            <div class="bg-gradient-to-br from-blue-600 to-cyan-500 rounded-2xl p-8 text-white">
+            <div class="bg-gradient-to-br from-blue-600 to-cyan-500 rounded-2xl p-8 text-white hover-lift">
               <p class="text-sm opacity-80 mb-2">Saldo Saat Ini</p>
               <p id="balanceAmount" class="text-4xl font-extrabold mb-6">Rp 0</p>
               <div class="space-y-3 border-t border-white/20 pt-4">
@@ -235,7 +234,7 @@
                 <div class="flex justify-between"><span class="opacity-80">Limit</span><span id="balanceLimit">Rp 0</span></div>
               </div>
             </div>
-            <div class="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm">
+            <div class="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm stat-card">
               <h3 class="font-bold text-slate-900 mb-4"><i class="fas fa-receipt text-blue-600 mr-2"></i> Transaksi Terbaru</h3>
               <div id="balanceTransactions" class="space-y-3"></div>
             </div>
@@ -245,7 +244,7 @@
         <!-- ============================================ LIMIT PAGE ============================================ -->
         <section id="page-limit" class="page-content hidden">
           <h2 class="text-2xl font-extrabold text-slate-900 mb-6">Limit Pinjaman</h2>
-          <div class="bg-white rounded-2xl p-8 border border-slate-100 shadow-sm max-w-2xl">
+          <div class="bg-white rounded-2xl p-8 border border-slate-100 shadow-sm max-w-2xl hover-lift">
             <div class="text-center mb-6">
               <div class="w-20 h-20 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
                 <i class="fas fa-gauge text-blue-600 text-3xl"></i>

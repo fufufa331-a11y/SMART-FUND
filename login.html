@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Login - SMART FUND</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <script src="https://cdn.tailwindcss.com"></script>
   <script>tailwind.config = { darkMode: 'class' };</script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -20,10 +21,8 @@
     <div class="hidden lg:flex lg:w-1/2 gradient-bg relative overflow-hidden">
       <div class="absolute inset-0 hero-pattern"></div>
       <div class="relative z-10 flex flex-col justify-between p-12 text-white">
-        <a href="/" class="flex items-center gap-2">
-          <div class="w-10 h-10 rounded-xl bg-white/20 backdrop-blur flex items-center justify-center text-white font-bold text-xl">
-            <i class="fas fa-wallet"></i>
-          </div>
+        <a href="/" class="flex items-center gap-2.5 group">
+          <img src="/assets/img/logo.png" alt="SMART FUND Logo" class="w-10 h-10 object-contain transition-transform duration-300 group-hover:scale-110 animate-float" />
           <span class="text-xl font-extrabold">SMART FUND</span>
         </a>
         <div>
@@ -43,14 +42,12 @@
     <div class="flex-1 lg:w-1/2 flex items-center justify-center p-6 md:p-12 bg-slate-50">
       <div class="w-full max-w-md">
         <!-- Mobile Logo -->
-        <a href="/" class="lg:hidden flex items-center gap-2 justify-center mb-8">
-          <div class="w-10 h-10 rounded-xl gradient-bg flex items-center justify-center text-white font-bold text-xl">
-            <i class="fas fa-wallet"></i>
-          </div>
+        <a href="/" class="lg:hidden flex items-center gap-2.5 justify-center mb-8 group">
+          <img src="/assets/img/logo.png" alt="SMART FUND Logo" class="w-10 h-10 object-contain transition-transform duration-300 group-hover:scale-110 animate-float" />
           <span class="text-xl font-extrabold gradient-text">SMART FUND</span>
         </a>
 
-        <div class="bg-white rounded-3xl shadow-xl p-8 border border-slate-100">
+        <div class="bg-white rounded-3xl shadow-xl p-8 border border-slate-100 hover-lift animate-zoom-in">
           <div class="flex justify-between items-center mb-8">
             <div>
               <h2 class="text-2xl font-extrabold text-slate-900">Masuk</h2>
@@ -93,7 +90,7 @@
             </div>
 
             <!-- Submit -->
-            <button type="submit" id="loginBtn" class="w-full py-4 gradient-bg text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition relative">
+            <button type="submit" id="loginBtn" class="w-full py-4 gradient-bg text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition relative btn-shine">
               <span class="btn-text"><i class="fas fa-right-to-bracket mr-2"></i> Login</span>
             </button>
           </form>
@@ -109,12 +106,6 @@
             Belum punya akun?
             <a href="/register.html" class="text-blue-600 font-bold hover:underline">Daftar Sekarang</a>
           </p>
-
-          <div class="mt-6 text-center">
-            <a href="/admin.html" class="text-sm text-slate-400 hover:text-blue-600">
-              <i class="fas fa-user-shield mr-1"></i> Login Admin
-            </a>
-          </div>
         </div>
 
         <p class="text-center text-sm text-slate-400 mt-6">
