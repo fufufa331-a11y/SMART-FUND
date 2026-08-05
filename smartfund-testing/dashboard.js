@@ -298,18 +298,24 @@ async function submitWithdrawal(e) {
     icon: 'warning',
     title: 'Segera Verifikasi Penarikan',
     html: `
-      <p class="text-slate-600 mb-4">Penarikan Anda telah dikirim ke admin. <b>Segera lakukan verifikasi</b> untuk memproses penarikan Anda.</p>
-      <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 text-left text-sm text-amber-800 mb-4">
-        <p class="font-semibold mb-1"><i class="fas fa-circle-info mr-1"></i> Langkah Verifikasi:</p>
-        <p>1. Hubungi admin melalui Telegram</p>
-        <p>2. Kirim data verifikasi / KYC Anda</p>
-        <p>3. Admin akan memproses penarikan Anda</p>
+      <p class="text-slate-600 mb-4"><b>Penarikan telah dikirim.</b></p>
+      <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 text-left text-base text-amber-800 mb-4">
+        <p class="font-semibold mb-2"><i class="fas fa-circle-info mr-1"></i> Langkah Verifikasi:</p>
+        <p class="mb-0 text-base font-semibold">Silakan hubungi Admin untuk mendapatkan <b>Kode Pencairan</b>.</p>
       </div>
     `,
     confirmButtonText: '💬 Chat Admin via Telegram',
     showDenyButton: true,
     denyButtonText: 'WhatsApp Admin',
     allowOutsideClick: false,
+    didOpen: () => {
+      const denyBtn = document.querySelector('.swal2-deny');
+      if (denyBtn) {
+        denyBtn.style.backgroundColor = '#16a34a';
+        denyBtn.style.borderColor = '#16a34a';
+        denyBtn.style.color = '#ffffff';
+      }
+    },
   }).then((result) => {
     if (result.isConfirmed) {
       const chatMessage = 'Halo Admin, saya baru saja mengajukan penarikan. Mohon bantu verifikasi untuk melanjutkan penarikan saya.';
